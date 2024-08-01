@@ -1,27 +1,13 @@
 class Solution(object):
-    def isIsomorphic(self, s, t):
-        d = {}
-        hSet = set()
-        for i in range(len(s)):
-            s_char = s[i]
-            t_char = t[i]
+    def canConstruct(self, ransomNote, magazine):
+        count = Counter(magazine)
 
-            if s_char not in d:
-                if t_char in hSet:
-                    return False
-                
-                d[s_char] = t_char
-                hSet.add(t_char)
-
+        for i in ransomNote:
+            if i not in magazine or count[i] == 0:
+                return False
             else:
-                if t_char != d[s_char]:
-                    return False
+                count[i]-=1
         return True
-
-
-
-
-
-        
+            
 
         
