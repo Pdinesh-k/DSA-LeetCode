@@ -1,29 +1,65 @@
 
 class Solution(object):
-    def removeNthFromEnd(self, head, n):
-        current = head
-        count = 0
-        last_count = 0
-        while(current):
-            count+=1
-            current = current.next
-        element = count-n
+    def createdupList(self,head):
+        if not head:
+            return head
+        
+        temp = head
 
-        if element ==0:
-            return head.next
+        while temp:
+            nextNode = temp.next
+            copy = Node(temp.val)
+            temp.next = copy
+            copy.next = nextNode
 
-        current = head
+            temp = nextNode
+    
+    def mergedupList(self,head):
+        temp = head
 
-        for i in range(element-1):
-            current = current.next
-        current.next = current.next.next if current.next else None
+        while(temp):
+            copyNode = temp.next
 
-        return head
+            if temp.random:
+                copyNode.random = temp.random.next
+            else:
+                copyNode.random = None
+
+            temp = temp.next.next
+
+    def seperateList(self,head):
+        temp = head
+        dummyNode = Node(-1)
+        dup = dummyNode
+
+        while(temp):
+            dup.next = temp.next
+            dup = dup.next
+
+            temp.next = temp.next.next
+            temp = temp.next
+        return dummyNode.next
+        
 
 
+    def copyRandomList(self, head):
+        if not head:
+            return None
+
+        self.createdupList(head)
+        self.mergedupList(head)
+        return self.seperateList(head)
+
+        
+
+        
 
 
+        
+        
+            
 
-
+        
+        
 
         
