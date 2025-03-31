@@ -39,6 +39,3 @@ n=4
 sol = Solution()
 board = [[False for _ in range(n)]for _ in range(n)]
 sol.nQueens(0,board)
-
-
-
